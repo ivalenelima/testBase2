@@ -11,7 +11,7 @@ public class DriverManager {
             System.out.println("🚀 Abrindo nova instância do WebDriver");
             System.setProperty("webdriver.chrome.driver", "/home/ivalenelima/Downloads/chromedriver-linux64/chromedriver");
             driver = new ChromeDriver();
-            driver.manage().window();
+            driver.manage().window().maximize();
         } else {
             System.out.println("➡️ Reciclando instância do WebDriver");
         }

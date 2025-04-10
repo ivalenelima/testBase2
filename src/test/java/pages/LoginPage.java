@@ -18,6 +18,8 @@ public class LoginPage {
         }
         this.driver = driver;
         this.wait = new WaitManager(driver, 10);
+
+
     }
 
     By usernameInput = By.id("username");
@@ -28,6 +30,10 @@ public class LoginPage {
     By profileButton = By.xpath("//*[@id=\"navbar-container\"]/div[2]/ul/li[2]/a/span");
     By logoutButton = By.className("fa-sign-out");
 
+
+    public void goToLoginPage() {
+        driver.get("https://mantis-prova.base2.com.br/login_page.php");
+    }
     public void enterUsername(String username) {
         WebElement input = wait.waitForElementToBeVisible(usernameInput);
         input.clear();

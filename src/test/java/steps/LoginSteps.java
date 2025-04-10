@@ -3,6 +3,7 @@ package steps;
 import io.cucumber.java.pt.*;
 import org.openqa.selenium.WebDriver;
 import utils.DriverManager;
+import utils.ContextManager;
 import pages.LoginPage;
 
 import static org.junit.Assert.*;
@@ -10,13 +11,18 @@ import static org.junit.Assert.*;
 public class LoginSteps {
 
     WebDriver driver = DriverManager.getDriver();
-    LoginPage loginPage;
+    private ContextManager context;
+    private LoginPage loginPage;
+
+    public LoginSteps(ContextManager context) {
+        this.context = context;
+        this.loginPage = context.getLoginPage();
+    }
 
 
     @Dado("que estou na página de login")
     public void queEstouNaPaginaDeLogin() {
-        driver.get("https://mantis-prova.base2.com.br/login_page.php");
-        loginPage = new LoginPage(driver);
+        loginPage.goToLoginPage();
     }
 
     @Quando("escrevo {string} no campo username")

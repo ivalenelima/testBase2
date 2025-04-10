@@ -3,7 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import src.test.java.utils.WaitManager;
+import utils.WaitManager;
 
 public class LoginPage {
     WebDriver driver;
@@ -17,6 +17,7 @@ public class LoginPage {
             throw new IllegalStateException("❗ WebDriver was closed and is being reused!");
         }
         this.driver = driver;
+        this.wait = new WaitManager(driver, 10);
     }
 
     By usernameInput = By.id("username");

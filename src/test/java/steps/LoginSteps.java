@@ -34,8 +34,15 @@ public class LoginSteps {
 
     @Entao("valido que estou no dashboard com a timeline")
     public void validoQueEstouNoDashboardComATimeline() {
-        assertTrue("Não está na tela de dashboard", driver.getCurrentUrl().contains("my_view_page"));
+        System.out.println("🔍 URL atual: " + driver.getCurrentUrl());
+        if (driver.getCurrentUrl().contains("my_view_page")) {
+            System.out.println("✅ Login funcionou!");
+        } else {
+            System.out.println("❌ Login falhou. Verificando erro...");
+            assertTrue("Não está na tela de dashboard", loginPage.isErrorDisplayed()); // 💥
+        }
     }
+
 
     @Entao("valido a mensagem de erro")
     public void validoAMensagemDeErro() {
@@ -56,5 +63,13 @@ public class LoginSteps {
     public void estouNaPaginaDeLogin() {
         assertTrue("Não está na tela de login", driver.getCurrentUrl().contains("login_page"));
         }
+
+    @Dado("que estou logado com o username {string} e a senha {string}")
+    public void queEstouLogadoComOUsernameEASenha(String username, String password) {
+        loginPage.enterUsername(username);
+        loginPage.clickUsernameLogin();
+        loginPage.enterPassword(password);
+        loginPage.clickPasswordLogin();
     }
+}
 

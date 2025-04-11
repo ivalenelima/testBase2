@@ -8,6 +8,7 @@ public class ContextManager {
     private LoginPage loginPage;
     private SenhaPage senhaPage;
     private CadastroPage cadastroPage;
+    private IssuePage issuePage;
 
     public ContextManager() {
         this.driver = DriverManager.getDriver();
@@ -37,5 +38,13 @@ public class ContextManager {
 
         }
         return cadastroPage;
+    }
+
+    public IssuePage getIssuePage() {
+        if (issuePage == null) {
+            issuePage = new IssuePage(driver);
+
+        }
+        return issuePage;
     }
 }

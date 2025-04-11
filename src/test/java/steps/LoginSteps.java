@@ -72,6 +72,7 @@ public class LoginSteps {
 
     @Dado("que estou logado com o username {string} e a senha {string}")
     public void queEstouLogadoComOUsernameEASenha(String username, String password) {
+        loginPage.goToLoginPage();
         loginPage.enterUsername(username);
         loginPage.clickUsernameLogin();
         loginPage.enterPassword(password);

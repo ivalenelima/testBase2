@@ -15,10 +15,10 @@ public class IssuePage {
 
     public IssuePage(WebDriver driver) {
         if (driver == null) {
-            throw new IllegalStateException("🚫 WebDriver is null in LoginPage constructor!");
+            throw new IllegalStateException("WebDriver nulo no construtor");
         }
         if (driver.toString().toLowerCase().contains("null")) {
-            throw new IllegalStateException("❗ WebDriver was closed and is being reused!");
+            throw new IllegalStateException("WebDriver foi fechado e estava sendo reusado");
         }
         this.driver = driver;
         this.wait = new WaitManager(driver, 20);

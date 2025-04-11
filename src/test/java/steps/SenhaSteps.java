@@ -3,7 +3,6 @@ package steps;
 import io.cucumber.java.pt.*;
 import org.openqa.selenium.WebDriver;
 import pages.SenhaPage;
-import utils.ContextManager;
 import utils.DriverManager;
 
 public class SenhaSteps {

@@ -2,8 +2,7 @@ package steps;
 
 import io.cucumber.java.pt.*;
 import org.openqa.selenium.WebDriver;
-import utils.DriverManager;
-import utils.ContextManager;
+import utils.*;
 import pages.LoginPage;
 
 import static org.junit.Assert.*;
@@ -13,6 +12,7 @@ public class LoginSteps {
     WebDriver driver = DriverManager.getDriver();
     private ContextManager context;
     private LoginPage loginPage;
+    WaitManager wait;
 
     public LoginSteps(ContextManager context) {
         this.context = context;
@@ -40,12 +40,11 @@ public class LoginSteps {
 
     @Entao("valido que estou no dashboard com a timeline")
     public void validoQueEstouNoDashboardComATimeline() {
-        System.out.println("🔍 URL atual: " + driver.getCurrentUrl());
         if (driver.getCurrentUrl().contains("my_view_page")) {
-            System.out.println("✅ Login funcionou!");
+            System.out.println("Login funcionou");
         } else {
-            System.out.println("❌ Login falhou. Verificando erro...");
-            assertTrue("Não está na tela de dashboard", loginPage.isErrorDisplayed()); // 💥
+            System.out.println("Login falhou");
+            assertTrue("Não está na tela de dashboard", loginPage.isErrorDisplayed());
         }
     }
 
@@ -73,6 +72,7 @@ public class LoginSteps {
     @Dado("que estou logado com o username {string} e a senha {string}")
     public void queEstouLogadoComOUsernameEASenha(String username, String password) {
         loginPage.goToLoginPage();
+        wait.waitForUrlContains("login_page");
         loginPage.enterUsername(username);
         loginPage.clickUsernameLogin();
         loginPage.enterPassword(password);
